@@ -1,23 +1,23 @@
 # MetsSipCreator
 
-Version: 0.1
+Version: 0.1.1
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
 
-* Dateien, die zur SIP hinzugefügt werden, werden sofort in ein Arbeitsverzeichnis kopiert
 * Hinzufügen von dc/dcterms-Metadaten zur ie-dmd-Section
 * Validierung von xPathKey (Whitelist aus resources)
 * SIP wird erst vorbereitet, am Ende validiert auf Erfüllung von gewissen Kriterien und am Ende finalisiert. Kriterien sind:
   * Es gibt einen 'PRESERVATION_MASTER'
   * Jede Repräsentation hat eine Datei
   * Es gibt mindestens ein dc/dcterms-Metadatum für die ie-dmd-Section
-* Bei der Auslieferung werden alle Dateien zum Zielort verschoben, danach kann die SIP-Instanz nicht mehr weiter verwendet werden (egal ob erfolgreich oder nicht)
+* Bei der Auslieferung werden alle Dateien zum Zielort kopiert
 
 ## Optional implementiert
 
 * hinzufügen von UserDefinedA & B & C
-* selbstständige Wahl eines Arbeitsverzeichnisses
+* Modus zum verschieben statt kopieren der Dateien
+* Modus um Dateien in einem Arbeitsverzeichnis zwischenzuspeichern
 
 ## Optional nicht implementiert
 

@@ -1,3 +1,4 @@
+package metsSipCreator;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,21 +7,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Stack;
 
+import utilities.Drive;
+
 public class SIP {
 	private static final String fs = System.getProperty("file.separator");
-	String arbeitsverzeichnis;
+	String arbeitsverzeichnis = null;
 	Stack<REP> reps = new Stack<>();
 	Stack<String> metadataXPathKey = new Stack<>();
 	Stack<String> metadataValue = new Stack<>();
 	Stack<String> validXPathKeyOptions = new Stack<>();
+	int lastFileId = 0;
+	private boolean moveMode = false;
 
-	public SIP(String arbeitsverzeichnis) throws Exception {
-		if (arbeitsverzeichnis == null) {
-			this.arbeitsverzeichnis = Drive.getArbeitsverzeichnis();
-		} else {
-			this.arbeitsverzeichnis = arbeitsverzeichnis;
-		}
-
+	public SIP() throws Exception {
 		// Lade valide xPathKey Optionen in einen Stack
 		File whitelistForXPathKey = new File("resources".concat(fs).concat("WhiteListForXPathKey.txt"));
 		try (BufferedReader br = new BufferedReader(new FileReader(whitelistForXPathKey))) {
@@ -33,9 +32,26 @@ public class SIP {
 			throw e;
 		}
 	}
+	
+	public void setMoveMode(boolean moveStattCopy) {
+		this.moveMode = moveStattCopy;
+	}
+	
+	public void useArbeitsverzeichnis(String arbeitsverzeichnis) throws Exception {
+		if (!reps.empty()) {
+			System.err.println("useArbeitsverzeichnis hätte vor Hinzufügen der Repräsentationen aufgerufen werden müssen");
+			throw new Exception();
+		}
+
+		if (arbeitsverzeichnis == null) {
+			this.arbeitsverzeichnis = Drive.getArbeitsverzeichnis();
+		} else {
+			this.arbeitsverzeichnis = arbeitsverzeichnis;
+		}
+	}
 
 	public REP newREP(String preservationType) {
-		REP rep = new REP(preservationType, this);
+		REP rep = new REP(preservationType, this.moveMode, this);
 		reps.push(rep);
 		return rep;
 	}
@@ -51,8 +67,8 @@ public class SIP {
 			if (rep.preservationType.contentEquals("PRESERVATION_MASTER")) {
 				hasPreservationMaster = true;
 			}
-			if (rep.files.empty()) {
-				System.err.println("Repräsentation hat keine Dateien: " + rep.preservationType);
+			if (!rep.validate()) {
+				System.err.println("Repräsentation invalide");
 				return false;
 			}
 		}
@@ -135,8 +151,10 @@ public class SIP {
 				System.err.println("Es tut mir Leid =(");
 				throw e;
 			} finally {
-				System.out.println("PLatzierung der Dateien erfolgreich. Lösche Arbeitsverzeichnis");
-				deleteSip();
+				if (arbeitsverzeichnis!=null) {
+					System.out.println("PLatzierung der Dateien erfolgreich. Lösche Arbeitsverzeichnis");
+					deleteSip();
+				}
 			}
 		}
 		
