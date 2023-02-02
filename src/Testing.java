@@ -3,7 +3,6 @@ import java.io.File;
 import org.apache.commons.io.FileUtils;
 
 import metsSipCreator.*;
-import utilities.PropertiesManager;
 
 public class Testing {
 	private static final String fs = System.getProperty("file.separator");

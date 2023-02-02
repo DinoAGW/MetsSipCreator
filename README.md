@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2
+Version: 0.2.1
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
@@ -20,7 +20,7 @@ implementiert für Rosetta Version: 7.3.0.2
 * Hinzufügen von CMS
 * Modus zum verschieben statt kopieren der Dateien
 * Man kann das Label der Repräsentation oder der Datei ändern
-* Lasse MimeType automatisch anhand Dateiendung erkennen (Zuordnungsliste unter  resources)
+* Lasse MimeType automatisch anhand Dateiendung erkennen
 * Setze md5-Summe (wird bei Auslieferung geprüft)
 
 ## Optional nicht implementiert
@@ -32,5 +32,5 @@ implementiert für Rosetta Version: 7.3.0.2
 * Löschen von Repräsentationen
 * Löschen von Dateien
 * Laden einer fertigen SIP-Struktur in eine SIP-Instanz
-* Validierung von xPathKey (Whitelist unter resources)
+* Validierung von xPathKey
 * Modus um Dateien in einem Arbeitsverzeichnis zwischenzuspeichern

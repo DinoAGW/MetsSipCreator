@@ -37,11 +37,7 @@ public class SIP {
 	private static final String XML_SCHEMA = "http://www.w3.org/2001/XMLSchema-instance";
 	private static final String XML_SCHEMA_REPLACEMENT = "http://www.exlibrisgroup.com/XMLSchema-instance";
 
-	public SIP() throws Exception {
-
-	}
-
-	public void setCMS(String system, String recordId) throws Exception {
+	public SIP setCMS(String system, String recordId) throws Exception {
 		if ((system == null) || (system.length() == 0)) {
 			System.err.println("system muss definiert sein");
 			throw new Exception();
@@ -52,9 +48,10 @@ public class SIP {
 		}
 		this.cmsSystem = system;
 		this.cmsRecordId = recordId;
+		return this;
 	}
 
-	public void setUserDefined(String ABorC, String value) throws Exception {
+	public SIP setUserDefined(String ABorC, String value) throws Exception {
 		switch (ABorC) {
 		case "A":
 			this.userDefinedA = value;
@@ -70,6 +67,7 @@ public class SIP {
 			throw new Exception();
 		}
 		userDefinedSet = true;
+		return this;
 	}
 
 	public REP newREP(String preservationType) {
@@ -113,18 +111,19 @@ public class SIP {
 		return true;
 	}
 
-	public void addMetadata(String xPathKey, String value) {
+	public SIP addMetadata(String xPathKey, String value) {
 		if (value == null) {
 			value = "";
 		}
 		metadataXPathKey.push(xPathKey);
 		metadataValue.push(value);
+		return this;
 	}
-
+	
 	public void deploy(String ziel) throws Exception {
 		File zielFile = new File(ziel);
 		if (zielFile.exists()) {
-			System.err.println("Ziel schon belegt");
+			System.err.println("Ziel schon belegt: " + zielFile.getAbsolutePath());
 			throw new Exception();
 		}
 		if (ziel.charAt(ziel.length() - 1) != fs.charAt(0)) {
@@ -174,25 +173,24 @@ public class SIP {
 
 		this.ie.updateSize(filesRootFolder);
 
-		if (this.userDefinedSet) {
+		if ((this.userDefinedSet)||(this.cmsSystem != null)) {
 			DnxDocument ieDnx = this.ie.getDnxParser();
 			DnxDocumentHelper ieDnxHelper = new DnxDocumentHelper(ieDnx);
-			GeneralIECharacteristics generalIeCharacteristics = ieDnxHelper.new GeneralIECharacteristics(null, null,
-					null, null, null, this.userDefinedA, this.userDefinedB, this.userDefinedC);
-			ieDnxHelper.setGeneralIECharacteristics(generalIeCharacteristics);
-			ie.setIeDnx(ieDnxHelper.getDocument());
-		}
-
-		if (this.cmsSystem != null) {
-			DnxDocument ieDnx = this.ie.getDnxParser();
-			DnxDocumentHelper ieDnxHelper = new DnxDocumentHelper(ieDnx);
-			CMS cms = ieDnxHelper.getCMS();
-			if (cms == null) {
-				cms = ieDnxHelper.new CMS();
+			if (this.userDefinedSet) {
+				GeneralIECharacteristics generalIeCharacteristics = ieDnxHelper.new GeneralIECharacteristics(null, null,
+						null, null, null, this.userDefinedA, this.userDefinedB, this.userDefinedC);
+				ieDnxHelper.setGeneralIECharacteristics(generalIeCharacteristics);
 			}
-			cms.setSystem(this.cmsSystem);
-			cms.setRecordId(this.cmsRecordId);
-			ieDnxHelper.setCMS(cms);
+	
+			if (this.cmsSystem != null) {
+				CMS cms = ieDnxHelper.getCMS();
+				if (cms == null) {
+					cms = ieDnxHelper.new CMS();
+				}
+				cms.setSystem(this.cmsSystem);
+				cms.setRecordId(this.cmsRecordId);
+				ieDnxHelper.setCMS(cms);
+			}
 			ie.setIeDnx(ieDnxHelper.getDocument());
 		}
 

@@ -62,16 +62,19 @@ public class FILE {
 		this.sip = rep.sip;
 	}
 	
-	public void setLabel(String label) {
+	public FILE setLabel(String label) {
 		this.label = label;
+		return this;
 	}
 
-	public void setMd5sum(String md5sum) {
+	public FILE setMd5sum(String md5sum) {
 		this.md5sum = md5sum;
+		return this;
 	}
 
-	public void setMoveMode(boolean moveStattCopy) {
+	public FILE setMoveMode(boolean moveStattCopy) {
 		this.moveMode = moveStattCopy;
+		return this;
 	}
 
 	void placeToTarget(String zielVerzeichnis) throws Exception {
@@ -112,8 +115,13 @@ public class FILE {
 	}
 
 	void deploy(FileGrp fGrp) throws Exception {
-		FileType fileType = sip.ie.addNewFile(fGrp, this.mimeType, this.fileOriginalPath, this.label);
+		FileType fileType = sip.ie.addNewFile(fGrp, this.mimeType, this.fileOriginalPath.replace('\\', '/'), this.label);
 		this.fileTypeId = fileType.getID();
+		
+//		DnxDocument dnx = sip.ie.getFileDnx(fileType.getID());
+//		DnxDocumentHelper fileDocumentHelper = new DnxDocumentHelper(dnx);
+//		fileDocumentHelper.getGeneralFileCharacteristics().setFileOriginalPath(this.fileOriginalPath);
+//		sip.ie.setFileDnx(fileDocumentHelper.getDocument(), fileType.getID());
 	}
 
 	void checkMd5sums() throws Exception {

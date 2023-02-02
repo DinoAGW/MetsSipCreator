@@ -1,11 +1,11 @@
 package utilities;
 
 public class Mime {
-	private static final String fs = System.getProperty("file.separator");	
-	
+	private static final String fs = System.getProperty("file.separator");
+
 	/*
-	 * weist manche MimeTypes zu.
-	 * Für weitere, siehe hier: https://wiki.selfhtml.org/wiki/MIME-Type/%C3%9Cbersicht
+	 * weist manche MimeTypes zu. Für weitere, siehe hier:
+	 * https://wiki.selfhtml.org/wiki/MIME-Type/%C3%9Cbersicht
 	 */
 	public static String endung2mime(String dateiname) throws Exception {
 		int letzterPunkt = dateiname.lastIndexOf(".");
@@ -14,12 +14,34 @@ public class Mime {
 			throw new Exception();
 		}
 		String dateiendung = dateiname.substring(letzterPunkt + 1);
-		PropertiesManager ppm = new PropertiesManager("resources".concat(fs).concat("mimeTypes.txt"));
-		String mimeType = ppm.readStringFromProperty(dateiendung);
+		String mimeType = getMime(dateiendung);
 		if (mimeType == null) {
 			System.err.println("Dateiendung nicht erkannt: ".concat(dateiendung));
 			throw new Exception();
 		}
 		return mimeType;
+	}
+
+	private static String getMime(String dateiendung) {
+		switch (dateiendung) {
+		case "txt":
+			return "text/plain";
+		case "pdf":
+			return "application/pdf";
+		case "xml":
+			return "text/xml";
+		case "zip":
+			return "application/zip";
+		case "tar":
+			return "application/x-tar";
+		case "png":
+			return "image/png";
+		case "avi":
+			return "video/x-msvideo";
+		case "mp4":
+			return "video/mp4";
+		default:
+			return null;
+		}
 	}
 }

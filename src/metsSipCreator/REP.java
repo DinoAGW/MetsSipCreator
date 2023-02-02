@@ -33,8 +33,9 @@ public class REP {
 		this.label = "Repräsentation".concat(Integer.toString(sip.reps.size())).concat(" (").concat(this.preservationType).concat(")");
 	}
 	
-	public void setLabel(String label) {
+	public REP setLabel(String label) {
 		this.label = label;
+		return this;
 	}
 	
 	public FILE newFile(String dateipfad, String fileOriginalPath, String mimeType) throws Exception {
@@ -72,7 +73,7 @@ public class REP {
 		this.fGrp = sip.ie.addNewFileGrp(Enum.UsageType.VIEW, preservationType);
 		DnxDocument dnxDocument = sip.ie.getFileGrpDnx(this.fGrp.getID());
 		DnxDocumentHelper documentHelper = new DnxDocumentHelper(dnxDocument);
-//		documentHelper.getGeneralRepCharacteristics().setRevisionNumber("1");
+		documentHelper.getGeneralRepCharacteristics().setRevisionNumber("1");
 		documentHelper.getGeneralRepCharacteristics().setLabel(this.label);
 		sip.ie.setFileGrpDnx(documentHelper.getDocument(), fGrp.getID());
 		
