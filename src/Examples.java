@@ -4,7 +4,7 @@ import org.apache.commons.io.FileUtils;
 
 import metsSipCreator.*;
 
-public class Testing {
+public class Examples {
 	private static final String fs = System.getProperty("file.separator");
 	
 	private static String testDatei = "bin" + fs + "Test.txt";
@@ -32,9 +32,7 @@ public class Testing {
 		sip.setCMS("cmsSystem", "cmsRecordId");
 		rep1.newFile(testDatei, "1".concat(fs), null);
 		REP rep2 = sip.newREP("MODIFIED_MASTER");
-		FILE file = rep2.newFile(testDatei, "2".concat(fs).concat("Test2.txt"), null);
-		file.setMd5sum("dfcd625d3138ed3d84e077161d579617");
-		file.setLabel("Eine Datei");
+		rep2.newFile(testDatei, "2".concat(fs).concat("Test2.txt"), null).setMd5sum("dfcd625d3138ed3d84e077161d579617").setLabel("Eine Datei");
 		rep2.newFile(testDatei, "Test3.txt", null);
 		sip.deploy("bin" + fs + "maximalSip");
 	}

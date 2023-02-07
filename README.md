@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2.1
+Version: 0.2.2
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch

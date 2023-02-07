@@ -118,6 +118,9 @@ public class FILE {
 		FileType fileType = sip.ie.addNewFile(fGrp, this.mimeType, this.fileOriginalPath.replace('\\', '/'), this.label);
 		this.fileTypeId = fileType.getID();
 		
+//		String fileDmd = sip.ie.getFileDmdId(this.fileTypeId);
+//		sip.ie.
+		
 //		DnxDocument dnx = sip.ie.getFileDnx(fileType.getID());
 //		DnxDocumentHelper fileDocumentHelper = new DnxDocumentHelper(dnx);
 //		fileDocumentHelper.getGeneralFileCharacteristics().setFileOriginalPath(this.fileOriginalPath);
