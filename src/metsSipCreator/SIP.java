@@ -97,13 +97,14 @@ public class SIP {
 			return false;
 		}
 
-		if (metadataXPathKey.size() != metadataValue.size()) {
-			System.err.println("Irgendwas ist schief gelaufen. metadataXPathKey.size()=" + metadataXPathKey.size()
-					+ ", aber metadataValue.size()=" + metadataValue.size() + ". Sollte eigentlich gleich lang sein");
+		if (this.metadataXPathKey.size() != this.metadataValue.size()) {
+			System.err.println("Irgendwas ist schief gelaufen. metadataXPathKey.size()=" + this.metadataXPathKey.size()
+					+ ", aber metadataValue.size()=" + this.metadataValue.size()
+					+ ". Sollte eigentlich gleich lang sein");
 			throw new Exception();
 		}
 
-		if (metadataValue.empty()) {
+		if (this.metadataValue.empty()) {
 			System.err.println("Es gibt keine Metadaten");
 			return false;
 		}
@@ -115,11 +116,11 @@ public class SIP {
 		if (value == null) {
 			value = "";
 		}
-		metadataXPathKey.push(xPathKey);
-		metadataValue.push(value);
+		this.metadataXPathKey.push(xPathKey);
+		this.metadataValue.push(value);
 		return this;
 	}
-	
+
 	public void deploy(String ziel) throws Exception {
 		File zielFile = new File(ziel);
 		if (zielFile.exists()) {
@@ -153,8 +154,8 @@ public class SIP {
 		DublinCore dc = this.ie.getDublinCoreParser();
 
 		// Füge Metadaten hinzu
-		Iterator<String> xPathKey = metadataXPathKey.iterator();
-		Iterator<String> value = metadataValue.iterator();
+		Iterator<String> xPathKey = this.metadataXPathKey.iterator();
+		Iterator<String> value = this.metadataValue.iterator();
 		while (xPathKey.hasNext()) {
 			dc.addElement(xPathKey.next(), value.next());
 		}
@@ -173,7 +174,7 @@ public class SIP {
 
 		this.ie.updateSize(filesRootFolder);
 
-		if ((this.userDefinedSet)||(this.cmsSystem != null)) {
+		if ((this.userDefinedSet) || (this.cmsSystem != null)) {
 			DnxDocument ieDnx = this.ie.getDnxParser();
 			DnxDocumentHelper ieDnxHelper = new DnxDocumentHelper(ieDnx);
 			if (this.userDefinedSet) {
@@ -181,7 +182,7 @@ public class SIP {
 						null, null, null, this.userDefinedA, this.userDefinedB, this.userDefinedC);
 				ieDnxHelper.setGeneralIECharacteristics(generalIeCharacteristics);
 			}
-	
+
 			if (this.cmsSystem != null) {
 				CMS cms = ieDnxHelper.getCMS();
 				if (cms == null) {

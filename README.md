@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2.2
+Version: 0.2.3
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
@@ -20,6 +20,7 @@ implementiert für Rosetta Version: 7.3.0.2
 * Hinzufügen von CMS
 * Modus zum verschieben statt kopieren der Dateien
 * Man kann das Label der Repräsentation oder der Datei ändern
+* Hinzufügen von dc-Metadaten auf FileLevel
 * Lasse MimeType automatisch anhand Dateiendung erkennen
 * Setze md5-Summe (wird bei Auslieferung geprüft)
 

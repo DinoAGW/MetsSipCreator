@@ -4,13 +4,17 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
+import com.exlibris.core.sdk.formatting.DublinCore;
 import com.exlibris.digitool.common.dnx.DnxDocument;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper.FileFixity;
 
 import gov.loc.mets.FileType;
+import gov.loc.mets.MdSecType;
 import gov.loc.mets.MetsType.FileSec.FileGrp;
 import utilities.Mime;
 
@@ -28,6 +32,8 @@ public class FILE {
 	private String md5sum = null;
 	private String fileTypeId;
 	private String label;
+	Stack<String> metadataXPathKey = new Stack<>();
+	Stack<String> metadataValue = new Stack<>();
 
 	FILE(String dateipfad, String fileOriginalPath, String mimeType, REP rep) throws Exception {
 		File file = new File(dateipfad);
@@ -50,7 +56,7 @@ public class FILE {
 			this.fileOriginalName = fileOriginalPath;
 		}
 		this.fileOriginalPath = this.zielPfadInnerhalbSip.concat(this.fileOriginalName);
-		
+
 		this.label = this.fileOriginalPath;
 
 		if (mimeType == null) {
@@ -61,7 +67,7 @@ public class FILE {
 		this.rep = rep;
 		this.sip = rep.sip;
 	}
-	
+
 	public FILE setLabel(String label) {
 		this.label = label;
 		return this;
@@ -105,26 +111,47 @@ public class FILE {
 		}
 	}
 
-	boolean validate() {
+	boolean validate() throws Exception {
 		File file = new File(this.pfadDerDatei);
 		if (!file.exists()) {
 			System.err.println("Datei ist verschwunden von " + this.pfadDerDatei);
 			return false;
 		}
+
+		if (this.metadataXPathKey.size() != this.metadataValue.size()) {
+			System.err.println("Irgendwas ist schief gelaufen. metadataXPathKey.size()=" + this.metadataXPathKey.size()
+					+ ", aber metadataValue.size()=" + this.metadataValue.size()
+					+ ". Sollte eigentlich gleich lang sein");
+			throw new Exception();
+		}
+
 		return true;
 	}
 
+	public FILE addMetadata(String xPathKey, String value) {
+		if (value == null) {
+			value = "";
+		}
+		this.metadataXPathKey.push(xPathKey);
+		this.metadataValue.push(value);
+		return this;
+	}
+
 	void deploy(FileGrp fGrp) throws Exception {
-		FileType fileType = sip.ie.addNewFile(fGrp, this.mimeType, this.fileOriginalPath.replace('\\', '/'), this.label);
+		FileType fileType = this.sip.ie.addNewFile(fGrp, this.mimeType, this.fileOriginalPath.replace('\\', '/'),
+				this.label);
 		this.fileTypeId = fileType.getID();
-		
-//		String fileDmd = sip.ie.getFileDmdId(this.fileTypeId);
-//		sip.ie.
-		
-//		DnxDocument dnx = sip.ie.getFileDnx(fileType.getID());
-//		DnxDocumentHelper fileDocumentHelper = new DnxDocumentHelper(dnx);
-//		fileDocumentHelper.getGeneralFileCharacteristics().setFileOriginalPath(this.fileOriginalPath);
-//		sip.ie.setFileDnx(fileDocumentHelper.getDocument(), fileType.getID());
+
+		if (!this.metadataXPathKey.empty()) {
+			// Füge Metadaten hinzu
+			Iterator<String> xPathKey = this.metadataXPathKey.iterator();
+			Iterator<String> value = this.metadataValue.iterator();
+			DublinCore dc = this.sip.ie.getDublinCoreParser();
+			while (xPathKey.hasNext()) {
+				dc.addElement(xPathKey.next(), value.next());
+			}
+			sip.ie.setDublinCore(dc, this.fileTypeId);
+		}
 	}
 
 	void checkMd5sums() throws Exception {

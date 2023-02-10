@@ -55,7 +55,7 @@ public class REP {
 		}
 	}
 	
-	boolean validate() {
+	boolean validate() throws Exception {
 		if (this.files.empty()) {
 			System.err.println("Repräsentation hat keine Dateien: " + this.preservationType);
 			return false;
