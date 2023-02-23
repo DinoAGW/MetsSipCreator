@@ -33,7 +33,7 @@ public class Examples {
 		rep1.newFile(testDatei, "1".concat(fs), null);
 		REP rep2 = sip.newREP("MODIFIED_MASTER");
 		rep2.newFile(testDatei, "2".concat(fs).concat("Test2.txt"), null).setMd5sum("dfcd625d3138ed3d84e077161d579617").setLabel("Eine Datei");
-		rep2.newFile(testDatei, "Test3.txt", null);
+		rep2.newFile(testDatei, "Test3.txt", null).addMetadata("dc:title", "DateiTitel");
 		sip.deploy("bin" + fs + "maximalSip");
 	}
 	
