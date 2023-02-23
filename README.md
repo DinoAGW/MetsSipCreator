@@ -32,6 +32,7 @@ implementiert für Rosetta Version: 7.3.0.2
 * hinzufügen von Metadaten zur ie-dmd-Section, die nicht dc/dcterms sind
 * Löschen von Repräsentationen
 * Löschen von Dateien
+* Auswahl eines alternativen PreservationLevels
 * Laden einer fertigen SIP-Struktur in eine SIP-Instanz
 * Validierung von xPathKey
 * Modus um Dateien in einem Arbeitsverzeichnis zwischenzuspeichern
