@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2.4
+Version: 0.2.5
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
@@ -19,6 +19,8 @@ implementiert für Rosetta Version: 7.3.0.2
 * Hinzufügen von UserDefinedA & B & C
 * Hinzufügen von CMS
 * Hinzufügen von SourceMD
+* Hinzufügen von AR Policy auf IE Ebene
+* Hinzufügen von AR Policy auf File Ebene
 * Modus zum verschieben statt kopieren der Dateien
 * Man kann das Label der Repräsentation oder der Datei ändern
 * Hinzufügen von dc-Metadaten auf FileLevel
@@ -28,6 +30,7 @@ implementiert für Rosetta Version: 7.3.0.2
 ## Optional nicht implementiert
 
 * definiere StructMap
+* Hinzufügen einer AR Policy auf REP Ebene
 * Setzen einer anderen RevisionNumer als 1
 * Datei aus dem Web, statt von der Festplatte
 * hinzufügen von Metadaten zur ie-dmd-Section, die nicht dc/dcterms sind

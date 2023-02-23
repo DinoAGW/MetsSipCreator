@@ -1,5 +1,7 @@
 import java.io.File;
 
+import com.exlibris.digitool.common.dnx.DnxDocument;
+import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
 import com.exlibris.dps.sdk.deposit.IEParser;
 import com.exlibris.dps.sdk.deposit.IEParserFactory;
 
@@ -32,9 +34,18 @@ public class Experimente {
 //		System.out.println(fileDc2);
 //		fileDc.addElement("dc:title", "a file title");
 	}
+	
+	static void test3() throws Exception {
+		IEParser ie = IEParserFactory.create();
+		DnxDocument ieDnx = ie.getDnxParser();
+		DnxDocumentHelper ieDnxHelper = new DnxDocumentHelper(ieDnx);
+		DnxDocumentHelper.AccessRightsPolicy ar = ieDnxHelper.new AccessRightsPolicy("433120", null, "ZB MED_STAFF only");
+		ieDnxHelper.setAccessRightsPolicy(ar);
+		ie.setIeDnx(ieDnxHelper.getDocument());
+	}
 
 	public static void main(String[] args) throws Exception {
-		test2();
+		test3();
 	}
 
 }

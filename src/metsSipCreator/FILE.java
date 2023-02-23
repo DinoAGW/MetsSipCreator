@@ -11,6 +11,7 @@ import java.util.Stack;
 import com.exlibris.core.sdk.formatting.DublinCore;
 import com.exlibris.digitool.common.dnx.DnxDocument;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
+import com.exlibris.digitool.common.dnx.DnxDocumentHelper.AccessRightsPolicy;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper.FileFixity;
 
 import gov.loc.mets.FileType;
@@ -34,6 +35,9 @@ public class FILE {
 	private String label;
 	Stack<String> metadataXPathKey = new Stack<>();
 	Stack<String> metadataValue = new Stack<>();
+	private boolean arPolicySet = false;
+	private String arPolicyId = null;
+	private String arPolicyDescription = null;
 
 	FILE(String dateipfad, String fileOriginalPath, String mimeType, REP rep) throws Exception {
 		File file = new File(dateipfad);
@@ -66,6 +70,13 @@ public class FILE {
 		}
 		this.rep = rep;
 		this.sip = rep.sip;
+	}
+	
+	public FILE setARPolicy(String arPolicyId, String arPolicyDescription) {
+		this.arPolicyId = arPolicyId;
+		this.arPolicyDescription = arPolicyDescription;
+		this.arPolicySet = true;
+		return this;
 	}
 
 	public FILE setLabel(String label) {
@@ -151,6 +162,14 @@ public class FILE {
 				dc.addElement(xPathKey.next(), value.next());
 			}
 			sip.ie.setDublinCore(dc, this.fileTypeId);
+		}
+		
+		if (this.arPolicySet) {
+			DnxDocument fileDnx = this.sip.ie.getDnxParser();
+			DnxDocumentHelper fileDnxHelper = new DnxDocumentHelper(fileDnx);
+			AccessRightsPolicy ar = fileDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
+			fileDnxHelper.setAccessRightsPolicy(ar);
+			this.sip.ie.setFileDnx(fileDnxHelper.getDocument(), this.fileTypeId);
 		}
 	}
 

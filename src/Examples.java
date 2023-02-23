@@ -40,7 +40,8 @@ public class Examples {
 		sip.setUserDefined("A", "Ich bins");
 		sip.setCMS("cmsSystem", "cmsRecordId");
 		sip.setSourceMD(MDTYPE.DC, createSourceMd(), null);
-		rep1.newFile(testDatei, "1".concat(fs), null);
+		sip.setARPolicy("433120", "ZB MED_STAFF only");
+		rep1.newFile(testDatei, "1".concat(fs), null).setARPolicy("433120", "ZB MED_STAFF only");
 		REP rep2 = sip.newREP("MODIFIED_MASTER");
 		rep2.newFile(testDatei, "2".concat(fs).concat("Test2.txt"), null).setMd5sum("dfcd625d3138ed3d84e077161d579617").setLabel("Eine Datei");
 		rep2.newFile(testDatei, "Test3.txt", null).addMetadata("dc:title", "DateiTitel");

@@ -11,6 +11,7 @@ import com.exlibris.core.sdk.formatting.DublinCore;
 import com.exlibris.core.sdk.utils.FileUtil;
 import com.exlibris.digitool.common.dnx.DnxDocument;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
+import com.exlibris.digitool.common.dnx.DnxDocumentHelper.AccessRightsPolicy;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper.CMS;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper.GeneralIECharacteristics;
 import com.exlibris.dps.sdk.deposit.IEParser;
@@ -37,6 +38,9 @@ public class SIP {
 	private MDTYPE.Enum sourceMdType = null;
 	private String otherSourceMdType = null;
 	private XmlObject sourceMd = null;
+	private boolean arPolicySet = false;
+	private String arPolicyId = null;
+	private String arPolicyDescription = null;
 
 	private static final String ROSETTA_METS_SCHEMA = "http://www.exlibrisgroup.com/xsd/dps/rosettaMets";
 	private static final String METS_SCHEMA = "http://www.loc.gov/METS/";
@@ -57,11 +61,18 @@ public class SIP {
 		return this;
 	}
 	
+	public SIP setARPolicy(String arPolicyId, String arPolicyDescription) {
+		this.arPolicyId = arPolicyId;
+		this.arPolicyDescription = arPolicyDescription;
+		this.arPolicySet = true;
+		return this;
+	}
+	
 	public SIP setSourceMD(MDTYPE.Enum mdType, XmlObject sourceMd, String otherMdType) {
-		this.sourceMdSet = true;
 		this.sourceMdType = mdType;
 		this.sourceMd = sourceMd;
 		this.otherSourceMdType = otherMdType;
+		this.sourceMdSet = true;
 		return this;
 	}
 
@@ -197,26 +208,36 @@ public class SIP {
 
 		this.ie.updateSize(filesRootFolder);
 
-		if ((this.userDefinedSet) || (this.cmsSystem != null)) {
-			DnxDocument ieDnx = this.ie.getDnxParser();
-			DnxDocumentHelper ieDnxHelper = new DnxDocumentHelper(ieDnx);
-			if (this.userDefinedSet) {
-				GeneralIECharacteristics generalIeCharacteristics = ieDnxHelper.new GeneralIECharacteristics(null, null,
-						null, null, null, this.userDefinedA, this.userDefinedB, this.userDefinedC);
-				ieDnxHelper.setGeneralIECharacteristics(generalIeCharacteristics);
-			}
-
-			if (this.cmsSystem != null) {
-				CMS cms = ieDnxHelper.getCMS();
-				if (cms == null) {
-					cms = ieDnxHelper.new CMS();
-				}
-				cms.setSystem(this.cmsSystem);
-				cms.setRecordId(this.cmsRecordId);
-				ieDnxHelper.setCMS(cms);
-			}
-			ie.setIeDnx(ieDnxHelper.getDocument());
+		// create IE DNX Section
+		DnxDocument ieDnx = this.ie.getDnxParser();
+		DnxDocumentHelper ieDnxHelper = new DnxDocumentHelper(ieDnx);
+		
+		// add userDefinedFields if set
+		if (this.userDefinedSet) {
+			GeneralIECharacteristics generalIeCharacteristics = ieDnxHelper.new GeneralIECharacteristics(null, null,
+					null, null, null, this.userDefinedA, this.userDefinedB, this.userDefinedC);
+			ieDnxHelper.setGeneralIECharacteristics(generalIeCharacteristics);
 		}
+
+		// add cmsSystem if set
+		if (this.cmsSystem != null) {
+			CMS cms = ieDnxHelper.getCMS();
+			if (cms == null) {
+				cms = ieDnxHelper.new CMS();
+			}
+			cms.setSystem(this.cmsSystem);
+			cms.setRecordId(this.cmsRecordId);
+			ieDnxHelper.setCMS(cms);
+		}
+		
+		// add AR Policy on IE-level if set
+		if (this.arPolicySet) {
+			AccessRightsPolicy ar = ieDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
+			ieDnxHelper.setAccessRightsPolicy(ar);
+		}
+		
+		// set IE DNX Section
+		ie.setIeDnx(ieDnxHelper.getDocument());
 
 		// example for adding a logical Struct Map.
 		MetsDocument metsDoc = MetsDocument.Factory.parse(this.ie.toXML());
