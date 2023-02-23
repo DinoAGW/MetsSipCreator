@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2.3
+Version: 0.2.4
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
@@ -18,6 +18,7 @@ implementiert für Rosetta Version: 7.3.0.2
 
 * Hinzufügen von UserDefinedA & B & C
 * Hinzufügen von CMS
+* Hinzufügen von SourceMD
 * Modus zum verschieben statt kopieren der Dateien
 * Man kann das Label der Repräsentation oder der Datei ändern
 * Hinzufügen von dc-Metadaten auf FileLevel

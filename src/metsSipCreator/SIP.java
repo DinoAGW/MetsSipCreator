@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.Stack;
 
+import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlOptions;
 
 import com.exlibris.core.sdk.formatting.DublinCore;
@@ -15,6 +16,7 @@ import com.exlibris.digitool.common.dnx.DnxDocumentHelper.GeneralIECharacteristi
 import com.exlibris.dps.sdk.deposit.IEParser;
 import com.exlibris.dps.sdk.deposit.IEParserFactory;
 
+import gov.loc.mets.MdSecType.MdWrap.MDTYPE;
 import gov.loc.mets.MetsDocument;
 
 import com.exlibris.core.sdk.consts.Enum;
@@ -31,6 +33,10 @@ public class SIP {
 	private String userDefinedC = null;
 	private String cmsSystem = null;
 	private String cmsRecordId = null;
+	private boolean sourceMdSet = false;
+	private MDTYPE.Enum sourceMdType = null;
+	private String otherSourceMdType = null;
+	private XmlObject sourceMd = null;
 
 	private static final String ROSETTA_METS_SCHEMA = "http://www.exlibrisgroup.com/xsd/dps/rosettaMets";
 	private static final String METS_SCHEMA = "http://www.loc.gov/METS/";
@@ -48,6 +54,14 @@ public class SIP {
 		}
 		this.cmsSystem = system;
 		this.cmsRecordId = recordId;
+		return this;
+	}
+	
+	public SIP setSourceMD(MDTYPE.Enum mdType, XmlObject sourceMd, String otherMdType) {
+		this.sourceMdSet = true;
+		this.sourceMdType = mdType;
+		this.sourceMd = sourceMd;
+		this.otherSourceMdType = otherMdType;
 		return this;
 	}
 
@@ -160,6 +174,15 @@ public class SIP {
 			dc.addElement(xPathKey.next(), value.next());
 		}
 		ie.setIEDublinCore(dc);
+		
+		// Füge ggf SourceMD hinzu
+		if (this.sourceMdSet) {
+			if (this.otherSourceMdType == null) {
+				ie.setIeSourceMd(this.sourceMdType, this.sourceMd);
+			} else {
+				ie.setIeSourceMd(this.sourceMdType, this.sourceMd, this.otherSourceMdType);
+			}
+		}
 
 		// Füge Repräsentationen hinzu
 		for (REP rep : reps) {
