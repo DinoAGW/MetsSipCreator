@@ -5,6 +5,7 @@ import com.exlibris.core.sdk.consts.Enum;
 import com.exlibris.digitool.common.dnx.DnxDocument;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
 
+import gov.loc.mets.MetsDocument.Mets;
 import gov.loc.mets.MetsType.FileSec.FileGrp;
 
 public class REP {
@@ -31,6 +32,10 @@ public class REP {
 		}
 		this.sip = sip;
 		this.label = "Repräsentation ".concat(Integer.toString(sip.reps.size()+1)).concat(" (").concat(this.preservationType).concat(")");
+	}
+	
+	void addStructMap (Mets mets) {
+		weiter machen
 	}
 	
 	public REP setLabel(String label) {
