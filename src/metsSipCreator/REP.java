@@ -30,7 +30,7 @@ public class REP {
 			this.preservationType = preservationType;
 		}
 		this.sip = sip;
-		this.label = "Repräsentation".concat(Integer.toString(sip.reps.size())).concat(" (").concat(this.preservationType).concat(")");
+		this.label = "Repräsentation ".concat(Integer.toString(sip.reps.size()+1)).concat(" (").concat(this.preservationType).concat(")");
 	}
 	
 	public REP setLabel(String label) {
