@@ -45,7 +45,8 @@ public class Experimente {
 	}
 
 	public static void main(String[] args) throws Exception {
-		test3();
+//		test3();
+		System.out.println("Hallo".substring(0, 2));
 	}
 
 }

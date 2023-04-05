@@ -25,13 +25,13 @@
 			<version>3.3.0</version>
 			<type>maven-plugin</type>
 		</dependency>
-		<dependency>
-			<groupId>com.exlibris</groupId>
-			<artifactId>sdk</artifactId>
-			<version>7.3.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/dps-sdk-7.3.0.jar</systemPath>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.exlibris</groupId> -->
+<!-- 			<artifactId>sdk</artifactId> -->
+<!-- 			<version>7.3.0</version> -->
+<!-- 			<scope>system</scope> -->
+<!-- 			<systemPath>${project.basedir}/lib/dps-sdk-7.3.0.jar</systemPath> -->
+<!-- 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
@@ -14,8 +15,8 @@ import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper.AccessRightsPolicy;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper.FileFixity;
 
+import gov.loc.mets.DivType;
 import gov.loc.mets.FileType;
-import gov.loc.mets.MdSecType;
 import gov.loc.mets.MetsType.FileSec.FileGrp;
 import utilities.Mime;
 
@@ -33,8 +34,8 @@ public class FILE {
 	private String md5sum = null;
 	private String fileTypeId;
 	private String label;
-	Stack<String> metadataXPathKey = new Stack<>();
-	Stack<String> metadataValue = new Stack<>();
+	private Stack<String> metadataXPathKey = new Stack<>();
+	private Stack<String> metadataValue = new Stack<>();
 	private boolean arPolicySet = false;
 	private String arPolicyId = null;
 	private String arPolicyDescription = null;
@@ -61,7 +62,7 @@ public class FILE {
 		}
 		this.fileOriginalPath = this.zielPfadInnerhalbSip.concat(this.fileOriginalName);
 
-		this.label = this.fileOriginalPath;
+		this.label = this.fileOriginalName;
 
 		if (mimeType == null) {
 			this.mimeType = Mime.endung2mime(pfadDerDatei);
@@ -70,6 +71,26 @@ public class FILE {
 		}
 		this.rep = rep;
 		this.sip = rep.sip;
+	}
+	
+	void placeInsideStructMap(HashMap<String, DivType> divTypes) {
+		int last = -1;
+		int next;
+		while ((next = this.zielPfadInnerhalbSip.indexOf(fs, last+1)) != -1) {
+			String nextString = this.zielPfadInnerhalbSip.substring(0, next+1);
+			if (!divTypes.containsKey(nextString)) {
+				String stelleString = this.zielPfadInnerhalbSip.substring(0, last+1);
+				DivType div1 = divTypes.get(stelleString);
+				DivType div2 = div1.addNewDiv();
+				div2.setLabel(this.zielPfadInnerhalbSip.substring(last+1, next));
+				divTypes.put(nextString, div2);
+			}
+			last = next;
+		}
+		DivType div = divTypes.get(this.zielPfadInnerhalbSip).addNewDiv();
+		div.setLabel(this.label);
+		div.setTYPE("FILE");
+		div.addNewFptr().setFILEID(this.fileTypeId);
 	}
 	
 	public FILE setARPolicy(String arPolicyId, String arPolicyDescription) {
@@ -165,7 +186,7 @@ public class FILE {
 		}
 		
 		if (this.arPolicySet) {
-			DnxDocument fileDnx = this.sip.ie.getDnxParser();
+			DnxDocument fileDnx = this.sip.ie.getFileDnx(this.fileTypeId);
 			DnxDocumentHelper fileDnxHelper = new DnxDocumentHelper(fileDnx);
 			AccessRightsPolicy ar = fileDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
 			fileDnxHelper.setAccessRightsPolicy(ar);

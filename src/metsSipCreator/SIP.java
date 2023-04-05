@@ -241,6 +241,7 @@ public class SIP {
 		ie.setIeDnx(ieDnxHelper.getDocument());
 
 		// example for adding a logical Struct Map.
+		ie.generateStructMap(null, null, "Table of Contents");
 		MetsDocument metsDoc = MetsDocument.Factory.parse(this.ie.toXML());
 		Mets mets = metsDoc.getMets();
 		for (REP rep : reps) {
