@@ -8,6 +8,7 @@ import com.exlibris.digitool.common.dnx.DnxDocument;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
 
 import gov.loc.mets.DivType;
+import gov.loc.mets.FileType;
 import gov.loc.mets.MetsDocument.Mets;
 import gov.loc.mets.MetsType.FileSec.FileGrp;
 import gov.loc.mets.StructMapType;
@@ -40,11 +41,11 @@ public class REP {
 
 	void addStructMap(Mets mets) throws Exception {
 		StructMapType sm = mets.addNewStructMap();
-		sm.setID(this.fGrp.getID() + "-1");
+		sm.setID(this.fGrp.getID() + "-1"); //je nachdem welche ID schon vergeben ist
 		sm.setTYPE("LOGICAL");
 		HashMap<String, DivType> divTypes = new HashMap<String, DivType>();
 		DivType div1 = sm.addNewDiv();
-		div1.setLabel(this.label);
+		div1.setLABEL(this.label);
 		divTypes.put("", div1);
 		for ( FILE file : files) {
 			file.placeInsideStructMap(divTypes);

@@ -82,13 +82,13 @@ public class FILE {
 				String stelleString = this.zielPfadInnerhalbSip.substring(0, last+1);
 				DivType div1 = divTypes.get(stelleString);
 				DivType div2 = div1.addNewDiv();
-				div2.setLabel(this.zielPfadInnerhalbSip.substring(last+1, next));
+				div2.setLABEL(this.zielPfadInnerhalbSip.substring(last+1, next));
 				divTypes.put(nextString, div2);
 			}
 			last = next;
 		}
 		DivType div = divTypes.get(this.zielPfadInnerhalbSip).addNewDiv();
-		div.setLabel(this.label);
+		div.setLABEL(this.label);
 		div.setTYPE("FILE");
 		div.addNewFptr().setFILEID(this.fileTypeId);
 	}

@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2.5
+Version: 0.2.6
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
@@ -13,6 +13,7 @@ implementiert für Rosetta Version: 7.3.0.2
 * Bei der Auslieferung werden alle Dateien zum Zielort kopiert
 * Repräsentationen und Dateien kriegen automatisch ein Label
 * Gebe MimeType zur Datei an
+* default StructMap
 
 ## Optional implementiert
 
@@ -29,7 +30,6 @@ implementiert für Rosetta Version: 7.3.0.2
 
 ## Optional nicht implementiert
 
-* definiere StructMap
 * Hinzufügen einer AR Policy auf REP Ebene
 * Setzen einer anderen RevisionNumer als 1
 * Datei aus dem Web, statt von der Festplatte
@@ -40,3 +40,4 @@ implementiert für Rosetta Version: 7.3.0.2
 * Laden einer fertigen SIP-Struktur in eine SIP-Instanz
 * Validierung von xPathKey
 * Modus um Dateien in einem Arbeitsverzeichnis zwischenzuspeichern
+* eigene StructMap

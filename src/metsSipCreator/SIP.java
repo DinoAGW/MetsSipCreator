@@ -18,7 +18,10 @@ import com.exlibris.dps.sdk.deposit.IEParser;
 import com.exlibris.dps.sdk.deposit.IEParserFactory;
 
 import gov.loc.mets.MdSecType.MdWrap.MDTYPE;
+import gov.loc.mets.DivType;
+import gov.loc.mets.FileType;
 import gov.loc.mets.MetsDocument;
+import gov.loc.mets.StructMapType;
 import gov.loc.mets.MetsDocument.Mets;
 
 import com.exlibris.core.sdk.consts.Enum;
@@ -241,13 +244,14 @@ public class SIP {
 		ie.setIeDnx(ieDnxHelper.getDocument());
 
 		// example for adding a logical Struct Map.
-		ie.generateStructMap(null, null, "Table of Contents");
+//		ie.generateStructMap(null, null, "Table of Contents");
 		MetsDocument metsDoc = MetsDocument.Factory.parse(this.ie.toXML());
 		Mets mets = metsDoc.getMets();
 		for (REP rep : reps) {
 			rep.addStructMap(mets);
 		}
 
+        
 		// insert IE created in content directory
 		String metsFileName = ziel.concat("content").concat(fs).concat("mets.xml");
 
