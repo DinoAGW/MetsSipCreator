@@ -3,7 +3,7 @@
 
   <Appenders>
 
-	<File name="File" fileName="metsSipCreator.log">
+	<File name="File" fileName="MetsSipCreator.log">
         <PatternLayout pattern="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
     </File>
 
