@@ -1,8 +1,6 @@
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlObject;
 
 import gov.loc.mets.MdSecType.MdWrap.MDTYPE;
@@ -46,8 +44,8 @@ public class Examples {
 		sip.setUserDefined("A", "Ich bins"); //Füge UserDefinedA hinzu
 		sip.setCMS("HBZ01", "HT020566828"); //Füge CMS hinzu
 		sip.setSourceMD(MDTYPE.DC, sourceMD, null); //Füge SourceMD vom Type DC hinzu. Bei Type OTHER wird das dritte Argument benötigt um den Type zu spezifizieren.
-		sip.setARPolicy("1349113", "ZB MED_STAFF only"); //Setze ARPolicy auf SIP-Ebene
-		rep1.newFile(testDatei, "1".concat(fs), null).setARPolicy("1349113", "ZB MED_STAFF only"); //Füge Datei in den Unterordner 1\ ein und setze ARPolicy auf File-Ebene 
+		sip.setARPolicy("433120", "ZB MED_STAFF only"); //Setze ARPolicy auf SIP-Ebene
+		rep1.newFile(testDatei, "1".concat(fs), null).setARPolicy("433120", "ZB MED_STAFF only"); //Füge Datei in den Unterordner 1\ ein und setze ARPolicy auf File-Ebene 
 		REP rep2 = sip.newREP("MODIFIED_MASTER"); //Füge neue Repräsentation hinzu
 		/*
 		 *  Speichere testDatei unter einen anderen Namen in den Unterordner 2\

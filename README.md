@@ -1,6 +1,6 @@
 # MetsSipCreator
 
-Version: 0.2.6
+Version: 0.2.7
 implementiert für Rosetta Version: 7.3.0.2
 
 ## Obligatorisch
@@ -12,7 +12,6 @@ implementiert für Rosetta Version: 7.3.0.2
   * Es gibt mindestens ein dc/dcterms-Metadatum für die ie-dmd-Section
 * Bei der Auslieferung werden alle Dateien zum Zielort kopiert
 * Repräsentationen und Dateien kriegen automatisch ein Label
-* Gebe MimeType zur Datei an
 * default StructMap
 
 ## Optional implementiert
@@ -21,17 +20,16 @@ implementiert für Rosetta Version: 7.3.0.2
 * Hinzufügen von CMS
 * Hinzufügen von SourceMD
 * Hinzufügen von AR Policy auf IE Ebene
+* Hinzufügen von AR Policy auf REP Ebene
 * Hinzufügen von AR Policy auf File Ebene
 * Modus zum verschieben statt kopieren der Dateien
 * Man kann das Label der Repräsentation oder der Datei ändern
 * Hinzufügen von dc-Metadaten auf FileLevel
-* Lasse MimeType automatisch anhand Dateiendung erkennen
 * Setze md5-Summe (wird bei Auslieferung geprüft)
+* Gebe MimeType zur Datei an
 
 ## Optional nicht implementiert
 
-* Hinzufügen einer AR Policy auf REP Ebene
-* Setzen einer anderen RevisionNumer als 1
 * Datei aus dem Web, statt von der Festplatte
 * hinzufügen von Metadaten zur ie-dmd-Section, die nicht dc/dcterms sind
 * Löschen von Repräsentationen

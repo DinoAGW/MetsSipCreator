@@ -1,0 +1,423 @@
+<mets:mets xmlns:mets="http://www.exlibrisgroup.com/xsd/dps/rosettaMets">
+  <mets:dmdSec ID="ie-dmd">
+    <mets:mdWrap MDTYPE="DC">
+      <mets:xmlData>
+        <dc:record xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <dc:title>Titel</dc:title>
+        </dc:record>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:dmdSec ID="fid2-2-dmd">
+    <mets:mdWrap MDTYPE="DC">
+      <mets:xmlData>
+        <dc:record xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <dc:title>DateiTitel</dc:title>
+        </dc:record>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="ie-amd">
+    <mets:techMD ID="ie-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalIECharacteristics">
+              <record>
+                <key id="UserDefinedA">Ich bins</key>
+              </record>
+            </section>
+            <section id="CMS">
+              <record>
+                <key id="system">HBZ01</key>
+                <key id="recordId">HT020566828</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="ie-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">433120</key>
+                <key id="policyDescription">ZB MED_STAFF only</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:sourceMD ID="ie-amd-source-DC-1">
+      <mets:mdWrap MDTYPE="DC">
+        <mets:xmlData>
+          <dc:record xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <dc:identifier>HT020566828</dc:identifier>
+            <dc:identifier>http://www.egms.de/de/meetings/agmb2020/</dc:identifier>
+            <dc:identifier>DPS:okeanos-z39:HBZ01:036760060:HT020566828</dc:identifier>
+            <dc:title>Jahrestagung der Arbeitsgemeinschaft für Medizinisches Bibliothekswesen (AGMB)</dc:title>
+            <dc:title>21.-22.09.2020</dc:title>
+            <dc:creator>AGMB-Jahrestagung 2020 Online (DE-588)1216889694</dc:creator>
+            <dc:publisher>Düsseldorf German Medical Science GMS Publishing House 27. August 2020</dc:publisher>
+            <dc:date>2020</dc:date>
+            <dc:type>conferenceObject</dc:type>
+            <dc:format>1 Online-Ressource</dc:format>
+          </dc:record>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:sourceMD>
+    <mets:digiprovMD ID="ie-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="rep1-amd">
+    <mets:techMD ID="rep1-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalRepCharacteristics">
+              <record>
+                <key id="preservationType">PRESERVATION_MASTER</key>
+                <key id="usageType">VIEW</key>
+                <key id="RevisionNumber">1</key>
+                <key id="label">Rep1 (PRESERVATION_MASTER)</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="rep1-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">AR_EVERYONE</key>
+                <key id="policyDescription">Keine Beschränkung</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="rep1-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="fid1-1-amd">
+    <mets:techMD ID="fid1-1-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalFileCharacteristics">
+              <record>
+                <key id="label">Test.txt</key>
+                <key id="fileSizeBytes">9</key>
+              </record>
+            </section>
+            <section id="fileFixity">
+              <record>
+                <key id="fixityType">MD5</key>
+                <key id="fixityValue">dfcd625d3138ed3d84e077161d579617</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="fid1-1-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">AR_EVERYONE</key>
+                <key id="policyDescription">Keine Beschränkung</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="fid1-1-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="fid2-1-amd">
+    <mets:techMD ID="fid2-1-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalFileCharacteristics">
+              <record>
+                <key id="label">Test.txt</key>
+                <key id="fileSizeBytes">9</key>
+              </record>
+            </section>
+            <section id="fileFixity">
+              <record>
+                <key id="fixityType">MD5</key>
+                <key id="fixityValue">dfcd625d3138ed3d84e077161d579617</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="fid2-1-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">433120</key>
+                <key id="policyDescription">ZB MED_STAFF only</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="fid2-1-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="rep2-amd">
+    <mets:techMD ID="rep2-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalRepCharacteristics">
+              <record>
+                <key id="preservationType">MODIFIED_MASTER</key>
+                <key id="usageType">VIEW</key>
+                <key id="RevisionNumber">1</key>
+                <key id="label">Rep2 (MODIFIED_MASTER)</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="rep2-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">AR_EVERYONE</key>
+                <key id="policyDescription">Keine Beschränkung</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="rep2-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="fid1-2-amd">
+    <mets:techMD ID="fid1-2-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalFileCharacteristics">
+              <record>
+                <key id="label">Test2.txt</key>
+                <key id="fileSizeBytes">9</key>
+              </record>
+            </section>
+            <section id="fileFixity">
+              <record>
+                <key id="fixityType">MD5</key>
+                <key id="fixityValue">dfcd625d3138ed3d84e077161d579617</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="fid1-2-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">AR_EVERYONE</key>
+                <key id="policyDescription">Keine Beschränkung</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="fid1-2-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="fid2-2-amd">
+    <mets:techMD ID="fid2-2-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalFileCharacteristics">
+              <record>
+                <key id="label">Test3.txt</key>
+                <key id="fileSizeBytes">9</key>
+              </record>
+            </section>
+            <section id="fileFixity">
+              <record>
+                <key id="fixityType">MD5</key>
+                <key id="fixityValue">dfcd625d3138ed3d84e077161d579617</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="fid2-2-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">AR_EVERYONE</key>
+                <key id="policyDescription">Keine Beschränkung</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="fid2-2-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="fid3-2-amd">
+    <mets:techMD ID="fid3-2-amd-tech">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="generalFileCharacteristics">
+              <record>
+                <key id="label">Eine Datei</key>
+                <key id="fileSizeBytes">9</key>
+              </record>
+            </section>
+            <section id="fileFixity">
+              <record>
+                <key id="fixityType">MD5</key>
+                <key id="fixityValue">dfcd625d3138ed3d84e077161d579617</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:techMD>
+    <mets:rightsMD ID="fid3-2-amd-rights">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx">
+            <section id="accessRightsPolicy">
+              <record>
+                <key id="policyId">AR_EVERYONE</key>
+                <key id="policyDescription">Keine Beschränkung</key>
+              </record>
+            </section>
+          </dnx>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:rightsMD>
+    <mets:digiprovMD ID="fid3-2-amd-digiprov">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="dnx">
+        <mets:xmlData>
+          <dnx xmlns="http://www.exlibrisgroup.com/dps/dnx"/>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp ID="rep1" ADMID="rep1-amd">
+      <mets:file ID="fid1-1" ADMID="fid1-1-amd">
+        <mets:FLocat LOCTYPE="URL" xlin:href="Rep1 (PRESERVATION_MASTER)/Test.txt" xmlns:xlin="http://www.w3.org/1999/xlink"/>
+      </mets:file>
+      <mets:file ID="fid2-1" ADMID="fid2-1-amd">
+        <mets:FLocat LOCTYPE="URL" xlin:href="Rep1 (PRESERVATION_MASTER)/1/Test.txt" xmlns:xlin="http://www.w3.org/1999/xlink"/>
+      </mets:file>
+    </mets:fileGrp>
+    <mets:fileGrp ID="rep2" ADMID="rep2-amd">
+      <mets:file ID="fid1-2" ADMID="fid1-2-amd">
+        <mets:FLocat LOCTYPE="URL" xlin:href="Rep2 (MODIFIED_MASTER)/2/Test2.txt" xmlns:xlin="http://www.w3.org/1999/xlink"/>
+      </mets:file>
+      <mets:file ID="fid2-2" ADMID="fid2-2-amd" DMDID="fid2-2-dmd">
+        <mets:FLocat LOCTYPE="URL" xlin:href="Rep2 (MODIFIED_MASTER)/Test3.txt" xmlns:xlin="http://www.w3.org/1999/xlink"/>
+      </mets:file>
+      <mets:file ID="fid3-2" ADMID="fid3-2-amd">
+        <mets:FLocat LOCTYPE="URL" xlin:href="Rep2 (MODIFIED_MASTER)/2/a/Test.txt" xmlns:xlin="http://www.w3.org/1999/xlink"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap ID="rep1-1" TYPE="LOGICAL">
+    <mets:div LABEL="Rep1 (PRESERVATION_MASTER)">
+      <mets:div LABEL="Test.txt" TYPE="FILE">
+        <mets:fptr FILEID="fid1-1"/>
+      </mets:div>
+      <mets:div LABEL="1">
+        <mets:div LABEL="Test.txt" TYPE="FILE">
+          <mets:fptr FILEID="fid2-1"/>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+  <mets:structMap ID="rep2-1" TYPE="LOGICAL">
+    <mets:div LABEL="Rep2 (MODIFIED_MASTER)">
+      <mets:div LABEL="2">
+        <mets:div LABEL="Test2.txt" TYPE="FILE">
+          <mets:fptr FILEID="fid1-2"/>
+        </mets:div>
+        <mets:div LABEL="a">
+          <mets:div LABEL="Eine Datei" TYPE="FILE">
+            <mets:fptr FILEID="fid3-2"/>
+          </mets:div>
+        </mets:div>
+      </mets:div>
+      <mets:div LABEL="Test3.txt" TYPE="FILE">
+        <mets:fptr FILEID="fid2-2"/>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>

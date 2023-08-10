@@ -18,7 +18,6 @@ import com.exlibris.digitool.common.dnx.DnxDocumentHelper.FileFixity;
 import gov.loc.mets.DivType;
 import gov.loc.mets.FileType;
 import gov.loc.mets.MetsType.FileSec.FileGrp;
-import utilities.Mime;
 
 public class FILE {
 	private static final String fs = System.getProperty("file.separator");
@@ -30,17 +29,18 @@ public class FILE {
 	REP rep;
 	SIP sip;
 	private boolean moveMode = false;
-	private String mimeType;
+	private String mimeType = null;
 	private String md5sum = null;
 	private String fileTypeId;
 	private String label;
 	private Stack<String> metadataXPathKey = new Stack<>();
 	private Stack<String> metadataValue = new Stack<>();
-	private boolean arPolicySet = false;
-	private String arPolicyId = null;
-	private String arPolicyDescription = null;
+	private String arPolicyId = "AR_EVERYONE";
+	private String arPolicyDescription = "Keine Beschränkung";
 
 	FILE(String dateipfad, String fileOriginalPath, String mimeType, REP rep) throws Exception {
+		this.rep = rep;
+		this.sip = rep.sip;
 		File file = new File(dateipfad);
 		if (!file.exists()) {
 			System.err.println("Datei existiert nicht");
@@ -60,17 +60,14 @@ public class FILE {
 			this.zielPfadInnerhalbSip = "";
 			this.fileOriginalName = fileOriginalPath;
 		}
-		this.fileOriginalPath = this.zielPfadInnerhalbSip.concat(this.fileOriginalName);
+		this.fileOriginalPath = this.rep.label.concat(fs).concat(this.zielPfadInnerhalbSip).concat(this.fileOriginalName);
 
 		this.label = this.fileOriginalName;
-
-		if (mimeType == null) {
-			this.mimeType = Mime.endung2mime(pfadDerDatei);
-		} else {
-			this.mimeType = mimeType;
-		}
-		this.rep = rep;
-		this.sip = rep.sip;
+	}
+	
+	public FILE setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+		return this;
 	}
 	
 	void placeInsideStructMap(HashMap<String, DivType> divTypes) {
@@ -96,7 +93,6 @@ public class FILE {
 	public FILE setARPolicy(String arPolicyId, String arPolicyDescription) {
 		this.arPolicyId = arPolicyId;
 		this.arPolicyDescription = arPolicyDescription;
-		this.arPolicySet = true;
 		return this;
 	}
 
@@ -185,13 +181,11 @@ public class FILE {
 			sip.ie.setDublinCore(dc, this.fileTypeId);
 		}
 		
-		if (this.arPolicySet) {
-			DnxDocument fileDnx = this.sip.ie.getFileDnx(this.fileTypeId);
-			DnxDocumentHelper fileDnxHelper = new DnxDocumentHelper(fileDnx);
-			AccessRightsPolicy ar = fileDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
-			fileDnxHelper.setAccessRightsPolicy(ar);
-			this.sip.ie.setFileDnx(fileDnxHelper.getDocument(), this.fileTypeId);
-		}
+		DnxDocument fileDnx = this.sip.ie.getFileDnx(this.fileTypeId);
+		DnxDocumentHelper fileDnxHelper = new DnxDocumentHelper(fileDnx);
+		AccessRightsPolicy ar = fileDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
+		fileDnxHelper.setAccessRightsPolicy(ar);
+		this.sip.ie.setFileDnx(fileDnxHelper.getDocument(), this.fileTypeId);
 	}
 
 	void checkMd5sums() throws Exception {

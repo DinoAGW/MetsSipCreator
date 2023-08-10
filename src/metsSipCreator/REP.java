@@ -6,6 +6,7 @@ import java.util.Stack;
 import com.exlibris.core.sdk.consts.Enum;
 import com.exlibris.digitool.common.dnx.DnxDocument;
 import com.exlibris.digitool.common.dnx.DnxDocumentHelper;
+import com.exlibris.digitool.common.dnx.DnxDocumentHelper.AccessRightsPolicy;
 
 import gov.loc.mets.DivType;
 import gov.loc.mets.FileType;
@@ -19,7 +20,9 @@ public class REP {
 	Stack<FILE> files = new Stack<>();
 	SIP sip;
 	private FileGrp fGrp;
-	private String label;
+	String label;
+	private String arPolicyId = "AR_EVERYONE";
+	private String arPolicyDescription = "Keine Beschränkung";
 
 	/**
 	 * input: Preservation Type preservationType For example
@@ -35,7 +38,7 @@ public class REP {
 			this.preservationType = preservationType;
 		}
 		this.sip = sip;
-		this.label = "Repräsentation ".concat(Integer.toString(sip.reps.size() + 1)).concat(" (")
+		this.label = "Rep".concat(Integer.toString(sip.reps.size() + 1)).concat(" (")
 				.concat(this.preservationType).concat(")");
 	}
 
@@ -62,6 +65,12 @@ public class REP {
 																			// existiert
 		files.push(file);
 		return file;
+	}
+	
+	public REP setARPolicy(String arPolicyId, String arPolicyDescription) {
+		this.arPolicyId = arPolicyId;
+		this.arPolicyDescription = arPolicyDescription;
+		return this;
 	}
 
 	void placeToTarget(String zielVerzeichnis) throws Exception {
@@ -95,7 +104,9 @@ public class REP {
 		DnxDocumentHelper documentHelper = new DnxDocumentHelper(dnxDocument);
 		documentHelper.getGeneralRepCharacteristics().setRevisionNumber("1");
 		documentHelper.getGeneralRepCharacteristics().setLabel(this.label);
-		sip.ie.setFileGrpDnx(documentHelper.getDocument(), fGrp.getID());
+		AccessRightsPolicy ar = documentHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
+		documentHelper.setAccessRightsPolicy(ar);
+		this.sip.ie.setFileGrpDnx(documentHelper.getDocument(), this.fGrp.getID());
 
 		for (FILE file : this.files) {
 			file.deploy(this.fGrp);

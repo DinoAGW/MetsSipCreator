@@ -42,9 +42,8 @@ public class SIP {
 	private MDTYPE.Enum sourceMdType = null;
 	private String otherSourceMdType = null;
 	private XmlObject sourceMd = null;
-	private boolean arPolicySet = false;
-	private String arPolicyId = null;
-	private String arPolicyDescription = null;
+	private String arPolicyId = "AR_EVERYONE";
+	private String arPolicyDescription = "Keine Beschränkung";
 
 	private static final String ROSETTA_METS_SCHEMA = "http://www.exlibrisgroup.com/xsd/dps/rosettaMets";
 	private static final String METS_SCHEMA = "http://www.loc.gov/METS/";
@@ -68,7 +67,6 @@ public class SIP {
 	public SIP setARPolicy(String arPolicyId, String arPolicyDescription) {
 		this.arPolicyId = arPolicyId;
 		this.arPolicyDescription = arPolicyDescription;
-		this.arPolicySet = true;
 		return this;
 	}
 	
@@ -234,11 +232,9 @@ public class SIP {
 			ieDnxHelper.setCMS(cms);
 		}
 		
-		// add AR Policy on IE-level if set
-		if (this.arPolicySet) {
-			AccessRightsPolicy ar = ieDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
-			ieDnxHelper.setAccessRightsPolicy(ar);
-		}
+		// add AR Policy on IE-level
+		AccessRightsPolicy ar = ieDnxHelper.new AccessRightsPolicy(this.arPolicyId, null, this.arPolicyDescription);
+		ieDnxHelper.setAccessRightsPolicy(ar);
 		
 		// set IE DNX Section
 		ie.setIeDnx(ieDnxHelper.getDocument());
