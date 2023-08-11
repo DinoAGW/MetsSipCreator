@@ -60,8 +60,8 @@ public class REP {
 		return this;
 	}
 
-	public FILE newFile(String dateipfad, String fileOriginalPath, String mimeType) throws Exception {
-		FILE file = new FILE(dateipfad, fileOriginalPath, mimeType, this);// geht sicher, dass die Datei auch wirklich
+	public FILE newFile(String dateipfad, String fileOriginalPath) throws Exception {
+		FILE file = new FILE(dateipfad, fileOriginalPath, this);// geht sicher, dass die Datei auch wirklich
 																			// existiert
 		files.push(file);
 		return file;

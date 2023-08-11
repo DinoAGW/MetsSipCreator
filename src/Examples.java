@@ -38,22 +38,22 @@ public class Examples {
 		SIP sip = new SIP(); //Erstelle neue SIP
 		sip.addMetadata("dc:title", "Titel"); //Füge ein Metadatum hinzu
 		REP rep1 = sip.newREP(null); //Erstelle Repräsentation. null bedeutet PRESERVATION_MASTER
-		rep1.newFile(testDatei, null, null); //Füge eine Datei hinzu mit null bedeutet in Hauptverzeichnis der SIP und null bedeutet erkenne mimeType selbst
+		rep1.newFile(testDatei, null); //Füge eine Datei hinzu mit null bedeutet in Hauptverzeichnis der SIP und null bedeutet erkenne mimeType selbst
 		sip.deploy("bin" + fs + "minimalSip"); //Prüfe ob SIP vollständig ist und liefere sie an die Stelle aus
 		
 		sip.setUserDefined("A", "Ich bins"); //Füge UserDefinedA hinzu
 		sip.setCMS("HBZ01", "HT020566828"); //Füge CMS hinzu
 		sip.setSourceMD(MDTYPE.DC, sourceMD, null); //Füge SourceMD vom Type DC hinzu. Bei Type OTHER wird das dritte Argument benötigt um den Type zu spezifizieren.
 		sip.setARPolicy("433120", "ZB MED_STAFF only"); //Setze ARPolicy auf SIP-Ebene
-		rep1.newFile(testDatei, "1".concat(fs), null).setARPolicy("433120", "ZB MED_STAFF only"); //Füge Datei in den Unterordner 1\ ein und setze ARPolicy auf File-Ebene 
+		rep1.newFile(testDatei, "1".concat(fs)).setARPolicy("433120", "ZB MED_STAFF only"); //Füge Datei in den Unterordner 1\ ein und setze ARPolicy auf File-Ebene 
 		REP rep2 = sip.newREP("MODIFIED_MASTER"); //Füge neue Repräsentation hinzu
 		/*
 		 *  Speichere testDatei unter einen anderen Namen in den Unterordner 2\
 		 *  und notiere md5Summe dazu (wird beim deploy überprüft, ob die stimmt)
 		 */
-		rep2.newFile(testDatei, "2".concat(fs).concat("Test2.txt"), null).setMd5sum("dfcd625d3138ed3d84e077161d579617");
-		rep2.newFile(testDatei, "Test3.txt", null).addMetadata("dc:title", "DateiTitel"); //Füge dc-Metadatum auf File-Ebene hinzu
-		rep2.newFile(testDatei, "2".concat(fs).concat("a").concat(fs), null).setLabel("Eine Datei"); //Füge eine Datei mit alternativem Label hinzu
+		rep2.newFile(testDatei, "2".concat(fs).concat("Test2.txt")).setMd5sum("dfcd625d3138ed3d84e077161d579617");
+		rep2.newFile(testDatei, "Test3.txt").addMetadata("dc:title", "DateiTitel"); //Füge dc-Metadatum auf File-Ebene hinzu
+		rep2.newFile(testDatei, "2".concat(fs).concat("a").concat(fs)).setLabel("Eine Datei"); //Füge eine Datei mit alternativem Label hinzu
 		sip.deploy("bin" + fs + "maximalSip");
 	}
 	

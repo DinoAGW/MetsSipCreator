@@ -38,7 +38,7 @@ public class FILE {
 	private String arPolicyId = "AR_EVERYONE";
 	private String arPolicyDescription = "Keine Beschränkung";
 
-	FILE(String dateipfad, String fileOriginalPath, String mimeType, REP rep) throws Exception {
+	FILE(String dateipfad, String fileOriginalPath, REP rep) throws Exception {
 		this.rep = rep;
 		this.sip = rep.sip;
 		File file = new File(dateipfad);
