@@ -25,11 +25,8 @@ public class REP {
 	private String arPolicyDescription = "Keine Beschränkung";
 
 	/**
-	 * input: Preservation Type preservationType For example
-	 * PRESERVATION_MASTER
-	 * PRE_INGEST_MODIFIED_MASTER
-	 * MODIFIED_MASTER
-	 * selfmade preservationtypes
+	 * input: Preservation Type preservationType For example PRESERVATION_MASTER
+	 * PRE_INGEST_MODIFIED_MASTER MODIFIED_MASTER selfmade preservationtypes
 	 */
 	REP(String preservationType, SIP sip) {
 		if (preservationType == null) {
@@ -38,20 +35,23 @@ public class REP {
 			this.preservationType = preservationType;
 		}
 		this.sip = sip;
-		this.label = "Rep".concat(Integer.toString(sip.reps.size() + 1)).concat(" (")
-				.concat(this.preservationType).concat(")");
+		this.label = "Rep".concat(Integer.toString(sip.reps.size() + 1)).concat(" (").concat(this.preservationType)
+				.concat(")");
 	}
 
 	void addStructMap(Mets mets) throws Exception {
 		StructMapType sm = mets.addNewStructMap();
-		sm.setID(this.fGrp.getID() + "-1"); //je nachdem welche ID schon vergeben ist
+		sm.setID(this.fGrp.getID() + "-1"); // je nachdem welche ID schon vergeben ist
 		sm.setTYPE("LOGICAL");
 		HashMap<String, DivType> divTypes = new HashMap<String, DivType>();
 		DivType div1 = sm.addNewDiv();
 		div1.setLABEL(this.label);
 		divTypes.put("", div1);
-		for ( FILE file : files) {
-			file.placeInsideStructMap(divTypes);
+		for (FILE file : files) {
+			file.placeFolderInsideStructMap(divTypes);
+		}
+		for (FILE file : files) {
+			file.placeFileInsideStructMap(divTypes);
 		}
 	}
 
@@ -62,11 +62,11 @@ public class REP {
 
 	public FILE newFile(String dateipfad, String fileOriginalPath) throws Exception {
 		FILE file = new FILE(dateipfad, fileOriginalPath, this);// geht sicher, dass die Datei auch wirklich
-																			// existiert
+																// existiert
 		files.push(file);
 		return file;
 	}
-	
+
 	public REP setARPolicy(String arPolicyId, String arPolicyDescription) {
 		this.arPolicyId = arPolicyId;
 		this.arPolicyDescription = arPolicyDescription;

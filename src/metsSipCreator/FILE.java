@@ -70,7 +70,7 @@ public class FILE {
 		return this;
 	}
 	
-	void placeInsideStructMap(HashMap<String, DivType> divTypes) {
+	void placeFolderInsideStructMap(HashMap<String, DivType> divTypes) {
 		int last = -1;
 		int next;
 		while ((next = this.zielPfadInnerhalbSip.indexOf(fs, last+1)) != -1) {
@@ -84,6 +84,9 @@ public class FILE {
 			}
 			last = next;
 		}
+	}
+	
+	void placeFileInsideStructMap(HashMap<String, DivType> divTypes) {
 		DivType div = divTypes.get(this.zielPfadInnerhalbSip).addNewDiv();
 		div.setLABEL(this.label);
 		div.setTYPE("FILE");
