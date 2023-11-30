@@ -4,6 +4,8 @@
       <mets:xmlData>
         <dc:record xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <dc:title>Titel</dc:title>
+          <dcterms:URI>uri1</dcterms:URI>
+          <dc:identifier xsi:type="dcterms:URI">uri2</dc:identifier>
         </dc:record>
       </mets:xmlData>
     </mets:mdWrap>
@@ -393,26 +395,26 @@
   </mets:fileSec>
   <mets:structMap ID="rep1-1" TYPE="LOGICAL">
     <mets:div LABEL="Rep1 (PRESERVATION_MASTER)">
-      <mets:div LABEL="Test.txt" TYPE="FILE">
-        <mets:fptr FILEID="fid1-1"/>
-      </mets:div>
       <mets:div LABEL="1">
         <mets:div LABEL="Test.txt" TYPE="FILE">
           <mets:fptr FILEID="fid2-1"/>
         </mets:div>
+      </mets:div>
+      <mets:div LABEL="Test.txt" TYPE="FILE">
+        <mets:fptr FILEID="fid1-1"/>
       </mets:div>
     </mets:div>
   </mets:structMap>
   <mets:structMap ID="rep2-1" TYPE="LOGICAL">
     <mets:div LABEL="Rep2 (MODIFIED_MASTER)">
       <mets:div LABEL="2">
-        <mets:div LABEL="Test2.txt" TYPE="FILE">
-          <mets:fptr FILEID="fid1-2"/>
-        </mets:div>
         <mets:div LABEL="a">
           <mets:div LABEL="Eine Datei" TYPE="FILE">
             <mets:fptr FILEID="fid3-2"/>
           </mets:div>
+        </mets:div>
+        <mets:div LABEL="Test2.txt" TYPE="FILE">
+          <mets:fptr FILEID="fid1-2"/>
         </mets:div>
       </mets:div>
       <mets:div LABEL="Test3.txt" TYPE="FILE">

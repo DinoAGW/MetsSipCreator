@@ -41,6 +41,8 @@ public class Examples {
 		rep1.newFile(testDatei, null); //Füge eine Datei hinzu mit null bedeutet in Hauptverzeichnis der SIP und null bedeutet erkenne mimeType selbst
 		sip.deploy("bin" + fs + "minimalSip"); //Prüfe ob SIP vollständig ist und liefere sie an die Stelle aus
 		
+		sip.addMetadata("dcterms:URI", "uri1");
+		sip.addMetadata("dc:identifier@dcterms:URI", "uri2");
 		sip.setUserDefined("A", "Ich bins"); //Füge UserDefinedA hinzu
 		sip.setCMS("HBZ01", "HT020566828"); //Füge CMS hinzu
 		sip.setSourceMD(MDTYPE.DC, sourceMD, null); //Füge SourceMD vom Type DC hinzu. Bei Type OTHER wird das dritte Argument benötigt um den Type zu spezifizieren.
