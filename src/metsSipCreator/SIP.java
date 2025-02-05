@@ -18,10 +18,10 @@ import com.exlibris.dps.sdk.deposit.IEParser;
 import com.exlibris.dps.sdk.deposit.IEParserFactory;
 
 import gov.loc.mets.MdSecType.MdWrap.MDTYPE;
-import gov.loc.mets.DivType;
-import gov.loc.mets.FileType;
+//import gov.loc.mets.DivType;
+//import gov.loc.mets.FileType;
 import gov.loc.mets.MetsDocument;
-import gov.loc.mets.StructMapType;
+//import gov.loc.mets.StructMapType;
 import gov.loc.mets.MetsDocument.Mets;
 
 import com.exlibris.core.sdk.consts.Enum;
@@ -261,6 +261,5 @@ public class SIP {
 		String xmlRosettaMetsContent = xmlMetsContent.replaceAll(XML_SCHEMA, XML_SCHEMA_REPLACEMENT);
 		xmlRosettaMetsContent = xmlMetsContent.replaceAll(METS_SCHEMA, ROSETTA_METS_SCHEMA);
 		FileUtil.writeFile(ieXML, xmlRosettaMetsContent);
-
 	}
 }
