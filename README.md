@@ -3,6 +3,8 @@
 Version: 0.2.7
 implementiert für Rosetta Version: 7.3.0.2
 
+zu installieren mit maven Goal "install"
+
 ## Obligatorisch
 
 * Hinzufügen von dc/dcterms-Metadaten zur ie-dmd-Section
